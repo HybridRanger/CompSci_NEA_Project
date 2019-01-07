@@ -5,6 +5,8 @@ using UnityEngine;
 public class Attractor : MonoBehaviour {
     
     public Rigidbody2D rb;
+    public int TrajectoryVertices;
+    public float TrajectoryTimeSkip;
 
     private float G = 6.67e-11f;
 
@@ -19,7 +21,7 @@ public class Attractor : MonoBehaviour {
         }
 	}
 
-    void Attract(Attractor targetObj)
+    void Attract (Attractor targetObj)
     {
         Rigidbody2D rbTarget = targetObj.rb;
         Vector2 direction = rbTarget.position - rb.position;
@@ -27,6 +29,7 @@ public class Attractor : MonoBehaviour {
         float magnitude = (rbTarget.mass * rb.mass)/Mathf.Pow(distance, 2);
         Vector2 force = direction.normalized * magnitude;
 
+        Debug.Log(force);
         rb.AddForce(force);
     }
 }
